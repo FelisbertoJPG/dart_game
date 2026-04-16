@@ -25,11 +25,26 @@ class Quiz {
   });
 }
 
+class Lesson {
+  final String title;
+  final String content;
+  final String? codeExample;
+  final List<String> relatedQuizIds;
+
+  Lesson({
+    required this.title,
+    required this.content,
+    this.codeExample,
+    this.relatedQuizIds = const [],
+  });
+}
+
 class Module {
   final String id;
   final String title;
   final String description;
   final int order;
+  final List<Lesson> lessons;
   final List<Quiz> quizzes;
 
   Module({
@@ -37,6 +52,7 @@ class Module {
     required this.title,
     required this.description,
     required this.order,
+    this.lessons = const [],
     required this.quizzes,
   });
 }

@@ -6,8 +6,28 @@ final List<Module> curriculum = [
     title: 'Fundamentos de Dart',
     description: 'Aprenda a base sólida da linguagem: variáveis, constantes e lógica básica.',
     order: 1,
+    lessons: [
+      Lesson(
+        title: 'Variáveis e Constantes',
+        content: 'No Dart, usamos "var" para variáveis que mudam. Mas se o valor for fixo, prefira "final" ou "const".\n\n"const" é para valores imutáveis definidos antes do código rodar, enquanto "final" pode ser definido enquanto o app executa.',
+        codeExample: 'var nome = "Dash";\nfinal data = DateTime.now();\nconst pi = 3.14;',
+        relatedQuizIds: ['v1', 'v2', 'v3'],
+      ),
+      Lesson(
+        title: 'Decisões no Código',
+        content: 'Usamos "if" (se) e "else" (senão) para tomar decisões. Para comparar valores, usamos "==" (igual) ou "!=" (diferente).',
+        codeExample: 'if (idade >= 18) {\n  print("Entrada liberada");\n}',
+        relatedQuizIds: ['c1', 'c2', 'c3'],
+      ),
+      Lesson(
+        title: 'Texto com Variáveis',
+        content: 'A interpolação permite colocar variáveis dentro de frases usando o símbolo "\$". Fácil né?',
+        codeExample: 'String pet = "Dash";\nprint("Olá, \$pet!");',
+        relatedQuizIds: ['e1'],
+      ),
+    ],
     quizzes: [
-      // VARIAVEIS (3)
+      // VARIAVEIS
       Quiz(
         id: 'v1',
         question: 'Qual palavra-chave usamos para declarar uma variável cujo valor será definido apenas uma vez, em tempo de execução?',
@@ -33,7 +53,7 @@ final List<Module> curriculum = [
         type: QuizType.multipleChoice,
         explanation: 'Dica: O Dart usa inferência de tipo com a palavra-chave "var".',
       ),
-      // CONDICIONAIS (3)
+      // CONDICIONAIS
       Quiz(
         id: 'c1',
         question: 'Qual é o resultado deste código?',
@@ -59,7 +79,7 @@ final List<Module> curriculum = [
         type: QuizType.multipleChoice,
         explanation: 'Dica: "||" (pipes) representa o OU lógico. Já "&&" representa o E lógico.',
       ),
-      // EXPRESSOES (3)
+      // EXPRESSOES
       Quiz(
         id: 'e1',
         question: 'Como realizamos a interpolação de uma variável dentro de uma String?',
@@ -91,8 +111,22 @@ final List<Module> curriculum = [
     title: 'Coleções e Repetição',
     description: 'Entenda como lidar com listas de dados e como repetir tarefas de forma eficiente.',
     order: 2,
+    lessons: [
+      Lesson(
+        title: 'Trabalhando com Listas',
+        content: 'Listas armazenam vários itens em uma única variável. Elas são indexadas, o que significa que o primeiro item está na posição [0].',
+        codeExample: 'var frutas = ["Maçã", "Uva"];\nprint(frutas[0]); // Maçã',
+        relatedQuizIds: ['l1', 'l2', 'l3'],
+      ),
+      Lesson(
+        title: 'Automação com Loops',
+        content: 'Loops servem para repetir código sem precisar escrever a mesma coisa várias vezes. O "for (var item in lista)" é o seu melhor amigo.',
+        codeExample: 'for (var f in frutas) {\n  print(f);\n}',
+        relatedQuizIds: ['lo1', 'lo2', 'lo3'],
+      ),
+    ],
     quizzes: [
-      // LISTAS (3)
+      // LISTAS
       Quiz(
         id: 'l1',
         question: 'Como acessamos o primeiro elemento de uma lista chamada "numeros"?',
@@ -117,7 +151,7 @@ final List<Module> curriculum = [
         type: QuizType.multipleChoice,
         explanation: 'Dica: Diferente do Java (size), no Dart usamos a propriedade "length".',
       ),
-      // LOOPS (3)
+      // LOOPS
       Quiz(
         id: 'lo1',
         question: 'Qual loop é mais indicado para percorrer todos os itens de uma lista?',
@@ -151,6 +185,14 @@ final List<Module> curriculum = [
     title: 'Desconstruindo Widgets',
     description: 'Agora que você domina a lógica, vamos criar interfaces incríveis.',
     order: 3,
+    lessons: [
+       Lesson(
+        title: 'Widgets: O Coração do Flutter',
+        content: 'No Flutter, quase tudo é um Widget. O "Scaffold" é o esqueleto da sua tela.',
+        codeExample: 'Scaffold(\n  appBar: AppBar(),\n  body: Center(),\n)',
+        relatedQuizIds: ['f1'],
+      ),
+    ],
     quizzes: [
        Quiz(
         id: 'f1',
