@@ -66,50 +66,49 @@ class QuizScreen extends ConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 32),
-                Text(
-                  currentQuiz.question,
-                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    fontSize: 24,
-                  ),
-                ),
-                if (currentQuiz.codeSnippet != null) ...[
-                  const SizedBox(height: 20),
-                  Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF2B2B2B),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Text(
-                      currentQuiz.codeSnippet!,
-                      style: const TextStyle(
-                        fontFamily: 'monospace',
-                        color: Colors.greenAccent,
-                        fontSize: 16,
-                      ),
-                    ),
-                  ),
-                ],
-                const SizedBox(height: 32),
                 Expanded(
-                  child: ListView.builder(
-                    itemCount: currentQuiz.options.length,
-                    itemBuilder: (context, index) {
-                      final option = currentQuiz.options[index];
-                      return OptionCard(
+                  child: ListView(
+                    physics: const BouncingScrollPhysics(),
+                    children: [
+                      const SizedBox(height: 32),
+                      Text(
+                        currentQuiz.question,
+                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                          fontSize: 24,
+                        ),
+                      ),
+                      if (currentQuiz.codeSnippet != null) ...[
+                        const SizedBox(height: 20),
+                        Container(
+                          width: double.infinity,
+                          padding: const EdgeInsets.all(16),
+                          decoration: BoxDecoration(
+                            color: const Color(0xFF2B2B2B),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Text(
+                            currentQuiz.codeSnippet!,
+                            style: const TextStyle(
+                              fontFamily: 'monospace',
+                              color: Colors.greenAccent,
+                              fontSize: 16,
+                            ),
+                          ),
+                        ),
+                      ],
+                      const SizedBox(height: 32),
+                      ...currentQuiz.options.map((option) => OptionCard(
                         text: option,
                         isSelected: quizState.selectedAnswer == option,
                         isChecked: quizState.isAnswerChecked,
                         isCorrect: option == currentQuiz.correctAnswer,
                         isWrong: option == quizState.selectedAnswer && option != currentQuiz.correctAnswer,
                         onTap: () => quizNotifier.selectAnswer(option),
-                      );
-                    },
+                      )),
+                      const SizedBox(height: 120), // Bottom padding for footer
+                    ],
                   ),
                 ),
-                const SizedBox(height: 100), // Space for bottom button
               ],
             ),
           ),
