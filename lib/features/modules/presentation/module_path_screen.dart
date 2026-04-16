@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:dash_lingo/core/theme.dart';
 import 'package:dash_lingo/features/profile/domain/progress_provider.dart';
-import 'package:dash_lingo/features/quiz/presentation/quiz_screen.dart';
+import 'package:dash_lingo/features/modules/presentation/lesson_slides_screen.dart';
+import 'package:dash_lingo/features/modules/presentation/knowledge_book_screen.dart';
 import 'package:dash_lingo/features/modules/domain/curriculum_data.dart';
 import 'widgets/module_node.dart';
 
@@ -30,6 +31,15 @@ class ModulePathScreen extends ConsumerWidget {
               icon: Icons.bolt,
               value: userState.xp.toString(),
               color: Colors.orange,
+            ),
+            IconButton(
+              icon: Icon(
+                Icons.menu_book, 
+                color: userState.completedModules.isNotEmpty ? AppColors.primary : Colors.grey[300],
+              ),
+              onPressed: userState.completedModules.isNotEmpty 
+                ? () => Navigator.push(context, MaterialPageRoute(builder: (context) => const KnowledgeBookScreen()))
+                : null,
             ),
             const Icon(Icons.person_outline, color: Colors.grey),
           ],
@@ -59,7 +69,7 @@ class ModulePathScreen extends ConsumerWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => QuizScreen(module: module),
+                  builder: (context) => LessonSlidesScreen(module: module),
                 ),
               );
             },
